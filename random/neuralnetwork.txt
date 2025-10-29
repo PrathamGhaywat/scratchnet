@@ -1,0 +1,33 @@
+NN Architecture:
+1. Input Layer: Take data
+2. Output Layer: Make prediction
+
+Forward Propagation:
+Process of passing data = Take input -> * by weight add biases -> apply activation -> prediction
+
+Weight/Biases:
+Weight = Connection strengths between neurons
+Biases: Allows shifting the activation function
+
+Activation Funcs:
+Neuron Output transform to introduce nonlinearty (that just means that the it's isn't always linear)
+
+- ReLu (rectified linear unit) : best for hidden layers 
+- sigmoid: makes values to 0-1 range
+Softmax: COnvert output to probabilities
+
+Loss Function:
+How wrong the AI predictions
+
+Backward Propagation:
+The learning algo:
+- Calculates error at output layer
+- Propgate error backward through network
+- compute gradients (basically finds out which weight contributed to how much error )
+- use chain rule from calculus (first thing gets bigger or smaller affects the stuff that comes after it)
+
+Gradient Descent
+Update weights to make less loss
+subtract (learning_rate * gradient) from every weight
+learning rate controls step size (normally 0.001 to 0.1)
+too high = unstable, too low = slow learning
