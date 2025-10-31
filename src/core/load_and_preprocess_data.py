@@ -20,3 +20,4 @@ print(f"Labels shape: {y.shape}") # (70000, )
 # One-hot encode labels
 y_one_hot = one_hot_encode(y)
 print(f"One-hot labels shape: {y_one_hot.shape}") # (70000, 10)
+print("-----------------------------------------------------")
