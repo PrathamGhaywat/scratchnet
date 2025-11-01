@@ -2,7 +2,7 @@ WARNING: STILL BUILDING SO INSTRUCTION ON HOW TO USE WILL NOT WORK
 
 # ScratchNet - A Neural Network built from Scratch
 
-This is a Neural Network built from Scratch using Python and NumPy. This was created for a hackathon: https://axiom.hackclub.com
+This is a Neural Network built from Scratch using Python and NumPy. 
 
 ## How to use
 
