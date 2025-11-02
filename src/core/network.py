@@ -185,6 +185,75 @@ class NeuralNetwork:
         predictions = self.predict(X)
         true_labels = np.argmax(y_true, axis=1)
         return np.mean(predictions == true_labels)
+    
+    def backward(self, y_true):
+        """
+        Backward propagation - compute gradients
+
+        Parameters:
+        -----------
+        y_true: array-like, shape (n_samples, n_classes)
+            True labels (one-hot encoded)
+        """
+        m = y_true.shape[0]
+
+        #init gradient storage
+        self.weight_gradients = []
+        self.bias_gradients = []
+
+        #output layer gradient (softmax + cross-entropy deravative)
+        dZ = self.activations[-1] - y_true
+
+        #backpropagate through each laywr
+        for i in range(len(self.weights) - 1, -1, -1):
+            #compute weight and bias gradients
+            dW = np.dot(self.activations[i].T, dZ)
+            db = np.sum(dZ, axis=0, keepdims=True)
+
+            #Store gradients (insert at begin to keep order)
+            self.weight_gradients.insert(0, dW)
+            self.bias_gradients.insert(0, db)
+
+            #compute gradient for prev layer (!= input layer)
+            if i > 0:
+                dA = np.dot(dZ, self.weights[i].T)
+                dZ = dA * self.relu_derivative(self.z_values[i-1])
+
+    def update_parameters(self):
+        """
+        Update weights and biases using computed gradients
+        """
+        for i in range(len(self.weights)):
+            self.weights[i] -= self.learning_rate * self.weight_gradients[i]
+            self.biases[i] -= self.learning_rate * self.bias_gradients[i]
+    
+    def train_step(self, X, y):
+        """
+        Perform one training step (forward + backward + update)
+
+        Parameters:
+        -----------
+        X: array-like, shape (n_samples, n_features)
+            Input data
+        y: array-like, shape (n_samples, n_classes)
+            True
+        
+        Returns:
+        -----------
+        loss: float
+            Loss value for this step
+        """
+        
+        output = self.forward(X)
+
+        loss = self.compute_loss(y, output)
+
+        self.backward(y)
+
+        self.update_parameters()
+
+        return loss
+
 
 # test
 if __name__  == "__main__":
@@ -241,3 +310,22 @@ if __name__  == "__main__":
     y_dummy = np.eye(10)[np.random.randint(0, 10, 5)]
     acc = nn.accuracy(X_dummy, y_dummy)
     print(f"\nRandom accuracy (untrained): {acc:.4f}")
+
+    print("\n=== Testing Backpropagation ===")
+
+    initial_w1 = nn.weights[0].copy()
+
+    print("\nBefore Training: ")
+    print(f"Sample weight from W1: {initial_w1[0, 0]:.6f}")
+
+    loss_before = nn.compute_loss(y_dummy, nn.forward(X_dummy))
+    print(f"Loss before: {loss_before:.4f}")
+
+    print("\n Training")
+    losses = []
+    for step in range(10):
+        loss = nn.train_step(X_dummy, y_dummy)
+        losses.append(loss)
+
+    print(f"Final loss: {losses[-1]:.4f}")
+    print(f"loss decrased: {losses[-1] < loss_before}")
