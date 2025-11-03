@@ -207,8 +207,8 @@ class NeuralNetwork:
         #backpropagate through each laywr
         for i in range(len(self.weights) - 1, -1, -1):
             #compute weight and bias gradients
-            dW = np.dot(self.activations[i].T, dZ)
-            db = np.sum(dZ, axis=0, keepdims=True)
+            dW = np.dot(self.activations[i].T, dZ) / m
+            db = np.sum(dZ, axis=0, keepdims=True) / m
 
             #Store gradients (insert at begin to keep order)
             self.weight_gradients.insert(0, dW)
