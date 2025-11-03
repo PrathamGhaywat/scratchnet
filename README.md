@@ -1,12 +1,5 @@
 ![Hackatime Badge](https://hackatime-badge.hackclub.com/U097N0AKR6Z/scratchnet)
 
-
-
-
-
-
-
-
 <div align="center">
   <a href="https://moonshot.hackclub.com" target="_blank">
     <img src="https://hc-cdn.hel1.your-objectstorage.com/s/v3/35ad2be8c916670f3e1ac63c1df04d76a4b337d1_moonshot.png" 
@@ -19,6 +12,10 @@ WARNING: STILL BUILDING SO INSTRUCTION ON HOW TO USE WILL NOT WORK
 # ScratchNet - A Neural Network built from Scratch
 
 This is a Neural Network built from Scratch using Python and NumPy. 
+
+Dataset: MNIST (70000 handwritten digits)
+Architecture: [784 -> 128 -> 64 ->]
+Final Accuracy: 97.61%
 
 ## How to use
 

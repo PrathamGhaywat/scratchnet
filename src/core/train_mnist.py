@@ -103,7 +103,7 @@ def plot_training_results(history):
     ax2.grid(True)
 
     plt.tight_layout()
-    plt.savefig('training_results.png')
+    plt.savefig('./assets/training_results.png')
     print("\nSaved training plot'")
     plt.show()
 
@@ -123,7 +123,7 @@ def visualize_predictions(nn, X_test, y_test, n_samples=10):
         axes[i].axis('off')
     
     plt.tight_layout()
-    plt.savefig('predictions.png')
+    plt.savefig('./assets/predictions.png')
     print("Pred plot saved")
     plt.show()
 
