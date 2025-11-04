@@ -1,4 +1,5 @@
 import numpy as np
+import pickle
 
 class NeuralNetwork:
     def __init__(self, layer_sizes, learning_rate=0.01):
@@ -253,3 +254,35 @@ class NeuralNetwork:
         self.update_parameters()
 
         return loss
+    
+    def save_model(self, filepath):
+        """Save trained model wieghts and biases"""
+        model_data = {
+            'weights': self.weights,
+            'biases': self.biases,
+            'layer_sizes': self.layer_sizes,
+            'learning_rate': self.learning_rate
+        }
+        with open(filepath, 'wb') as f:
+            pickle.dump(model_data, f)
+        print(f"Saved to {filepath}")
+
+    @staticmethod
+    def load_mode(filepath):
+        """Load trained model"""
+        with open(filepath, 'rb') as f:
+            model_data = pickle.load(f)
+        
+        #make network with saved architecture
+        nn = NeuralNetwork(
+            layer_sizes=model_data['layer_sizes'],
+            learning_rate=model_data['learning_rate']
+        )
+
+        nn.weights = model_data['weights']
+        nn.biases = model_data['biases']
+
+        print(f"loaded model from {filepath}")
+        return nn
+    
+    
