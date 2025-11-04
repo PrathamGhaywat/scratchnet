@@ -150,6 +150,10 @@ if __name__ == "__main__":
     print(f"Final Test accuracy: {history['test_accuracies'][-1]:.4f}")
     print(f"{'='*60}\n")
 
+    nn.save_model('./models/mnist.pkl')
+    
     plot_training_results(history)
 
     visualize_predictions(nn, X_test, y_test, n_samples=10)
+
+    
