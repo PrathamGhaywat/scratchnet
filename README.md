@@ -11,6 +11,7 @@
 # ScratchNet - A Neural Network built from Scratch
 
 This is a Neural Network built from Scratch using Python and NumPy. 
+Try it out: https://scratchnet-mnist.streamlit.app/
 
 Dataset: MNIST (70000 handwritten digits)
 Architecture: [784 -> 128 -> 64 ->]
