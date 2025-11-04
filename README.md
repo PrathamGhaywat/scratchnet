@@ -7,7 +7,6 @@
          style="width: 100%;">
   </a>
 </div>
-WARNING: STILL BUILDING SO INSTRUCTION ON HOW TO USE WILL NOT WORK
 
 # ScratchNet - A Neural Network built from Scratch
 
@@ -39,15 +38,22 @@ python -m venv scratchnet
 #Activate the venv: on Linux and MacOS it would be different: source scratchnet/bin/activate
 ./scratchnet/scripts/activate
 ```
-
-Then run main.py
-
+Then run: 
 ```bash
-python src/main.py
+pip install -r requirements.txt
 ```
 
-After that you can follow the set of options that will be provided to you.
+Then run train_mnist.py
+```bash
+python src/core/train_mnist.py
+```
 
+This will train the neural network. But you can skip that process if you want and directly run the Web GUI:
+```bash
+streamlit run src/main.py
+```
+
+Then you can visit the given localhost address and use it!
 ## License
 
 The license is Apache License 2.0 - For more info see: [License](LICENSE.md)
